@@ -11,7 +11,7 @@ export default function DisplayLineups(props) {
     return (
       <div>
         {props.lineupsData.lineups.map(lineup => (
-          <h3 key={lineup.id}>{lineup.lineup_points}</h3>
+          <h3 key={lineup.lineup_id}>{lineup.lineup_points}</h3>
         ))}
       </div>
     );
