@@ -1,6 +1,6 @@
 .card {
   background-color: #d3d3d3 !important;
-  width: 40%;
+  width: 50%;
   height: 150px;
 }
 
@@ -10,7 +10,7 @@
 
 .control-panel-button {
   float: right;
-  margin-right: 10%;
+  margin-right: 5%;
   margin-top: 10%;
 }
 

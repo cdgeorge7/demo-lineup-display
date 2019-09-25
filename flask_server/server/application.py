@@ -14,14 +14,18 @@ def index():
 
 @application.route('/demo_lineups', methods=['GET'])
 def demo_lineups():
-    return jsonify(minute_lineups_list)
+    response = jsonify(minute_lineups_list)
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
 
 
 @application.route('/demo_lineups/<int:minute>', methods=['GET'])
 def demo_lineups_at_minute(minute):
     if minute < 0 or minute >= len(minute_lineups_list):
         abort(404)
-    return jsonify(minute_lineups_list[minute])
+    response = jsonify(minute_lineups_list[minute])
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
 
 
 @application.errorhandler(404)
