@@ -4,6 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
+/flask_server/server/Include
+/flask_server/server/Lib
+/flask_server/server/Scripts
+/flask_server/server/tcl
 
 # testing
 /coverage
@@ -18,6 +22,8 @@
 .env.test.local
 .env.production.local
 *.pkl
+*.zip
+LICENSE.txt
 
 npm-debug.log*
 yarn-debug.log*
