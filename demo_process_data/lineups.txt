@@ -1,0 +1,20 @@
+QB Daniel Jones FLEX Christian McCaffrey RB Frank Gore RB Rex Burkhead WR Keenan Allen WR Mike Evans WR Sterling Shepard TE Evan Engram DST Cowboys 
+QB Jameis Winston FLEX Christian McCaffrey RB Mark Ingram II RB Frank Gore WR Keenan Allen WR Mike Evans WR Phillip Dorsett II TE Evan Engram DST Packers 
+QB Jameis Winston FLEX Christian McCaffrey RB Phillip Lindsay RB Rex Burkhead WR Julio Jones WR Keenan Allen WR Mike Evans TE Darren Waller DST Panthers 
+QB Jameis Winston RB Christian McCaffrey FLEX Le'Veon Bell RB Rex Burkhead WR Keenan Allen WR Mike Evans WR Sterling Shepard TE Darren Waller DST Saints 
+QB Jameis Winston RB Christian McCaffrey RB Dalvin Cook FLEX Rex Burkhead WR Keenan Allen WR Mike Evans WR Nelson Agholor TE Darren Waller DST Chiefs 
+QB Kyle Allen RB Christian McCaffrey RB Dalvin Cook FLEX Keenan Allen WR Mike Evans WR Julian Edelman WR Nelson Agholor TE Greg Olsen DST Steelers 
+QB Kyle Allen RB Christian McCaffrey RB Rex Burkhead WR Julio Jones WR Keenan Allen FLEX Mike Evans WR Marvin Jones Jr. TE Greg Olsen DST Patriots 
+QB Russell Wilson RB Christian McCaffrey RB Devonta Freeman WR Keenan Allen WR Mike Evans WR Tyler Lockett FLEX Nelson Agholor TE Eric Ebron DST Buccaneers 
+QB Josh Allen RB Alvin Kamara RB Mark Ingram II WR Keenan Allen WR Mike Evans WR Marquise Brown FLEX Nelson Agholor TE Greg Olsen DST Packers 
+QB Russell Wilson RB Alvin Kamara RB Dalvin Cook FLEX Keenan Allen WR Tyler Lockett WR DK Metcalf WR Nelson Agholor TE Greg Olsen DST Panthers 
+QB Russell Wilson RB Christian McCaffrey RB Alvin Kamara FLEX Phillip Lindsay WR Julio Jones WR Tyler Lockett WR Phillip Dorsett II TE Austin Hooper DST Lions 
+QB Jameis Winston RB Christian McCaffrey FLEX Alvin Kamara RB Phillip Lindsay WR Keenan Allen WR Mike Evans WR Nelson Agholor TE O.J. Howard DST Chiefs 
+QB Daniel Jones RB Alvin Kamara RB Austin Ekeler WR Keenan Allen WR Mike Evans WR Danny Amendola TE Evan Engram FLEX Greg Olsen DST Bills 
+QB Daniel Jones RB Christian McCaffrey RB Chris Carson WR Keenan Allen WR Mike Evans WR Nelson Agholor TE Evan Engram FLEX Greg Olsen DST Cowboys 
+QB Daniel Jones RB Dalvin Cook RB Austin Ekeler WR Keenan Allen WR Mike Evans WR Sterling Shepard FLEX Evan Engram TE Greg Olsen DST Chargers 
+QB Jameis Winston RB Dalvin Cook FLEX Austin Ekeler RB Mark Ingram II WR Mike Evans WR Tyler Lockett WR Nelson Agholor TE Darren Waller DST Packers 
+QB Daniel Jones RB Le'Veon Bell RB Phillip Lindsay WR Julio Jones FLEX Keenan Allen WR Mike Evans WR Sterling Shepard TE Evan Engram DST Panthers 
+QB Daniel Jones RB Marlon Mack RB Mark Ingram II WR Julio Jones WR Keenan Allen WR Julian Edelman FLEX Sterling Shepard TE Evan Engram DST Saints 
+QB Jameis Winston RB Dalvin Cook RB David Johnson FLEX Keenan Allen WR Mike Evans WR Sterling Shepard WR Nelson Agholor TE Austin Hooper DST Cowboys 
+QB Jameis Winston RB Dalvin Cook RB Mark Ingram II WR Keenan Allen FLEX JuJu Smith-Schuster WR Mike Evans WR Nelson Agholor TE Greg Olsen DST Vikings 

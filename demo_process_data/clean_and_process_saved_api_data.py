@@ -1,12 +1,14 @@
+from time import time
 import json
 import os
 from pprint import pprint
 from time import sleep
+import pickle
 
-from helpers import get_dk_points, get_player_id_player_info_map
+from helpers import get_dk_points, get_player_id_player_info_map, split_lineup_string
 
 
-# This is a horribly gross data munging file
+# This is a horribly gross data munging file for horribly gross data
 
 processing_folder_path = os.getcwd()
 
@@ -36,6 +38,7 @@ def keep_relevant_records(record, player_id_player_info_map):
     return cleaned_object
 
 
+# clean game data file
 with open(os.path.join(processing_folder_path, game_data_file), "r") as fo:
     data = json.load(fo)
     player_id_player_info_map = get_player_id_player_info_map(
@@ -44,30 +47,52 @@ with open(os.path.join(processing_folder_path, game_data_file), "r") as fo:
     minute_records_list = [keep_relevant_records(
         record, player_id_player_info_map) for record in data]
 
-    pprint(minute_records_list[81])
+    # pprint(minute_records_list[81])
 
-    # # test whether keep_relevant_records is working
-    keenan_allen_id = '2540154'
-    for minute in minute_records_list:
-        if keenan_allen_id in minute:
-            # print(minute['counter'])
-            print(minute[keenan_allen_id]['dk_points'])
-            # sleep(.1)
+# make object for each minute for each lineup
+with open(os.path.join(processing_folder_path, "lineups.txt"), "r") as fo:
+    lines = fo.readlines()
+    lineup_lists = [split_lineup_string(line) for line in lines]
 
-    # proof that the data is good
-    # for i in range(206, 415):
-    #     print(get_dk_points(keenan_allen_id, data[i][keenan_allen_id]))
-    #     sleep(.5)
+with open(os.path.join(processing_folder_path, "name_to_player_id.csv"), "r") as fo:
+    lines = fo.readlines()
+    player_name_to_id_map = {}
+    for line in lines:
+        player_name_to_id_map[line.split(',')[0]] = line.split(',')[1][:-1]
 
-    # pprint(data[206][keenan_allen_id])
-    # pprint(data[310][keenan_allen_id])
 
-    # pprint(minute_records_list[7])
+# pprint(minute_records_list[15])
 
-    # pprint(minute_records_list[414])
-    # pprint(minute_records_list[414])
-    # for key in data[414]:
-    #     if key in ['time', 'counter']:
-    #         break
-    #     player_tuple = get_dk_points(player_id_player_info_map[key], data[414][key])
-    #     print(player_tuple)
+
+def set_lineup_data(minute_record):
+    response_data = {"counter": minute_record["counter"],
+                     "time": minute_record["time"]}
+    lineup_objects = []
+    for i, lineup in enumerate(lineup_lists):
+        lineup_object = {"lineup_id": i+1}
+        lineup_points = 0
+        player_objects = []
+        for player_name in lineup:
+            player_id = player_name_to_id_map[player_name]
+            player_object = {"player_name": player_name,
+                             "position": player_id_player_info_map[player_id]["position"],
+                             "team": player_id_player_info_map[player_id]["teamAbbr"]}
+            if player_id in minute_record:
+                player_object["dk_points"] = minute_record[player_id]["dk_points"]
+            else:
+                player_object["dk_points"] = 0
+            lineup_points += player_object["dk_points"]
+            player_objects.append(player_object)
+        lineup_object["players"] = player_objects
+        lineup_object["lineup_points"] = lineup_points
+        lineup_objects.append(lineup_object)
+    response_data["lineups"] = lineup_objects
+    return response_data
+
+
+minute_lineups_list = [set_lineup_data(
+    minute_record) for minute_record in minute_records_list]
+
+# minute_lineups_list is what should be returned by the server
+with open('minute_lineups_list.pkl', 'wb') as fo:
+    pickle.dump(minute_lineups_list, fo)

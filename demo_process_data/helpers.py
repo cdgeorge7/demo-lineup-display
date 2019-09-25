@@ -160,6 +160,14 @@ def get_dk_points(player, player_stats):
     return dk_points
 
 
+def split_lineup_string(lineup_string):
+    lineup_string = lineup_string.replace('QB', '').replace('RB', '') \
+        .replace('WR', '').replace('TE', '').replace('FLEX', '') \
+        .replace('DST', '').replace("'", '')
+    players = lineup_string.split('  ')
+    return [player.rstrip().lstrip() for player in players]
+
+
 def main():
     output_file_directory = os.getcwd()
     info_map = get_player_id_player_info_map(output_file_directory, info_keys=[
