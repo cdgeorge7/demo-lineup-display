@@ -20,7 +20,7 @@ export default function Display() {
     complete: false
   });
 
-  let lineupsMinute = useRef(400);
+  let lineupsMinute = useRef(0);
   const setLineupsMinute = minute => {
     lineupsMinute.current = minute;
   };
