@@ -19,6 +19,14 @@
   margin-top: 3%;
 }
 
+.lineup-display-container {
+  padding-top: 20px;
+}
+
+.btn-lineup {
+  padding-top: 5px;
+}
+
 .card-pos {
   display: inline-block !important;
 }

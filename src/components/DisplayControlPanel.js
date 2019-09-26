@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 
 export default function DisplayControlPanel(props) {
+  const [resetDisabled, setResetDisabled] = useState(true);
+
   const startDemo = () => {
-    props.setStartDemo(true);
+    setResetDisabled(true);
     props.setDemoButtonState({
       initial: false,
       running: true,
@@ -11,8 +13,7 @@ export default function DisplayControlPanel(props) {
   };
 
   const pauseDemo = () => {
-    console.log("WWWWWWWWWWWWWWWWWWWWWWWWWWWHHHHHHHHHHHHHYYYYYYYYYYYYYY");
-    props.setStartDemo(false);
+    setResetDisabled(false);
     props.setDemoButtonState({
       initial: false,
       running: false,
@@ -21,6 +22,7 @@ export default function DisplayControlPanel(props) {
   };
 
   const resetDemo = () => {
+    props.setLineupsMinute(0);
     props.setDemoButtonState({
       initial: true,
       running: false,
@@ -39,20 +41,34 @@ export default function DisplayControlPanel(props) {
   };
 
   return (
-    <div className="control-panel-container">
+    <div className="container-fluid mt-4">
+      <h3 className="float-left w-25">{props.time}</h3>
       <div className="card card-pos">
-        <div className="card-body">
+        <div className="card-body d-flex justify-content-center">
           <div className="btn-group">
             <button
               className="btn btn-lg btn-info control-panel-button"
               onClick={controlDemo}
+              disabled={props.demoButtonState.complete}
             >
-              {props.demoButtonState.initial ? "Start Demo" : "Pause Demo"}
+              {props.demoButtonState.initial
+                ? "Start Demo"
+                : !props.demoButtonState.running &&
+                  !props.demoButtonState.complete
+                ? "Continue Demo"
+                : "Pause Demo"}
             </button>
-            <button className="btn btn-lg btn-info control-panel-button">
+            <button
+              className="btn btn-lg btn-info control-panel-button"
+              disabled={resetDisabled && !props.demoButtonState.complete}
+              onClick={resetDemo}
+            >
               Reset Demo
             </button>
-            <button className="btn btn-lg btn-info control-panel-button">
+            <button
+              className="btn btn-lg btn-info control-panel-button"
+              disabled={true}
+            >
               Sort
             </button>
           </div>

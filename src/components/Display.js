@@ -12,38 +12,35 @@ const API_BASE_URL =
 
 export default function Display() {
   const [lineupsData, setLineupsData] = useState({});
-  const [startDemo, setStartDemo] = useState(false);
+  const [time, setTime] = useState();
+  const [hasError, setHasError] = useState(false);
   const [demoButtonState, setDemoButtonState] = useState({
     initial: true,
     running: false,
     complete: false
   });
 
-  let lineupsMinute = useRef(0);
-  let stopFlag = useRef(false);
-  const MAX_DEMO_FETCHES = 200;
+  let lineupsMinute = useRef(400);
+  const setLineupsMinute = minute => {
+    lineupsMinute.current = minute;
+  };
+  let continueFlag = useRef(false);
+  const MAX_DEMO_FETCHES = 414;
 
   const fetchDemoData = async () => {
-    //const URL_LINEUP_DEMO = "http://localhost:5000/lineups";
     const URL_LINEUPS = API_BASE_URL + "/demo_lineups/" + lineupsMinute.current;
-    //console.log(URL_LINEUPS);
-    console.log("fetch", startDemo);
-    if (stopFlag.current) {
+    if (!continueFlag.current) {
       return;
     }
-    if (startDemo) {
-      //setDemoButtonState({ initial: false, running: true, complete: false });
+    if (demoButtonState.running) {
       await axios
         .get(URL_LINEUPS)
         .then(response => {
           setLineupsData(response.data);
-          //setfetchCount(fetchCount + 1);
+          setTime(response.data.time);
           lineupsMinute.current += 1;
-          //console.log(lineupsMinute.current);
-          // don't like this, should be >=
           if (lineupsMinute.current === MAX_DEMO_FETCHES) {
             lineupsMinute.current = 0;
-            setStartDemo(false);
             setDemoButtonState({
               initial: false,
               running: false,
@@ -51,32 +48,38 @@ export default function Display() {
             });
             return;
           }
-          if (!stopFlag.current) {
+          if (continueFlag.current) {
             setTimeout(fetchDemoData, 100);
           }
         })
-        .catch();
+        .catch(err => {
+          setHasError(true);
+        });
     }
   };
 
   useEffect(() => {
-    console.log("useEffect", startDemo);
-    if (startDemo) {
-      stopFlag.current = false;
+    if (demoButtonState.running) {
+      continueFlag.current = true;
       fetchDemoData();
     } else {
-      stopFlag.current = true;
+      continueFlag.current = false;
     }
-  }, [startDemo]);
+  }, [demoButtonState]);
 
   return (
     <div className="container">
       <DisplayControlPanel
-        setStartDemo={setStartDemo}
         demoButtonState={demoButtonState}
         setDemoButtonState={setDemoButtonState}
+        setLineupsMinute={setLineupsMinute}
+        time={time}
       />
-      <DisplayLineups lineupsData={lineupsData} />
+      {hasError ? (
+        <div>Something went wrong...</div>
+      ) : (
+        <DisplayLineups lineupsData={lineupsData} />
+      )}
     </div>
   );
 }
