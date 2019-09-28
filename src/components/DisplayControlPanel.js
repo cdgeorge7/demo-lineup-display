@@ -23,6 +23,9 @@ export default function DisplayControlPanel(props) {
 
   const resetDemo = () => {
     props.setLineupsMinute(0);
+    setResetDisabled(true);
+    props.setLineupsData({});
+    props.setTime();
     props.setDemoButtonState({
       initial: true,
       running: false,

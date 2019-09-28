@@ -20,7 +20,7 @@ export default function Display() {
     complete: false
   });
 
-  let lineupsMinute = useRef(400);
+  let lineupsMinute = useRef(0);
   const setLineupsMinute = minute => {
     lineupsMinute.current = minute;
   };
@@ -29,9 +29,6 @@ export default function Display() {
 
   const fetchDemoData = async () => {
     const URL_LINEUPS = API_BASE_URL + "/demo_lineups/" + lineupsMinute.current;
-    if (!continueFlag.current) {
-      return;
-    }
     if (demoButtonState.running) {
       await axios
         .get(URL_LINEUPS)
@@ -73,6 +70,8 @@ export default function Display() {
         demoButtonState={demoButtonState}
         setDemoButtonState={setDemoButtonState}
         setLineupsMinute={setLineupsMinute}
+        setLineupsData={setLineupsData}
+        setTime={setTime}
         time={time}
       />
       {hasError ? (
